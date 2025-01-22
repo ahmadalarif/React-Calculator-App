@@ -1,6 +1,5 @@
 import React,{ Component } from "react";
 
-
 class Calculator extends Component{
     constructor(props){
         super(props)
@@ -12,18 +11,26 @@ class Calculator extends Component{
     }
     handleSelection(event) {
         this.setState({operation: event.target.value});
-      }
+    }
 
     calculate(){
-        
-     switch(this.state.operation){
-        case '+': this.setState({result :parseInt(this.numberOneValue.value) + parseInt(this.numberTwoValue.value)});break;
-        case '-': this.setState({result :parseInt(this.numberOneValue.value) - parseInt(this.numberTwoValue.value)});break;
-        case '/': this.setState({result :parseInt(this.numberOneValue.value) / parseInt(this.numberTwoValue.value)});break;
-        case '*': this.setState({result :parseInt(this.numberOneValue.value) * parseInt(this.numberTwoValue.value)});break;
-      
+        switch(this.state.operation){
+            case '+': 
+                this.setState({result: parseInt(this.numberOneValue.value) + parseInt(this.numberTwoValue.value)});
+                break;
+            case '-': 
+                this.setState({result: parseInt(this.numberOneValue.value) - parseInt(this.numberTwoValue.value)});
+                break;
+            case '/': 
+                this.setState({result: parseInt(this.numberOneValue.value) / parseInt(this.numberTwoValue.value)});
+                break;
+            case '*': 
+                this.setState({result: parseInt(this.numberOneValue.value) * parseInt(this.numberTwoValue.value)});
+                break;
+            default: 
+                this.setState({result: 0}); // Default case
+        }
     }
-     }
     render(){
         return(
             <div className="container">
@@ -36,12 +43,10 @@ class Calculator extends Component{
                         <option value="/">/</option>
                         <option value="*">*</option>
                     </select>
-                  
                     <input type="text" ref={el => this.numberTwoValue=el} />
                     <span>=</span>
                     <button onClick={(e) => this.calculate()}>calculate</button>
-
-                <h3>{this.state.result}</h3>
+                    <h3>{this.state.result}</h3>
                 </div>
             </div>
         );
